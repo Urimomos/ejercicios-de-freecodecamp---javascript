@@ -41,7 +41,15 @@ function analyzeTexts(texts, phraseLength){
     if(texts.length == 0){
         return [];
     }
-    
+    if(typeof texts[0] == "string"){
+        resultado.push(
+        {
+            repeatedPhrases : findRepeatedPhrases(texts, phraseLength),
+            palindromeBreaks: findPalindromeBreaks(texts)
+        }
+        );
+        return resultado;
+    }
     for(let text of texts){
     resultado.push(
         {
@@ -53,5 +61,6 @@ function analyzeTexts(texts, phraseLength){
     return resultado;
 }
 
-console.log(analyzeTexts([["racecar","level","hello","level"],["the", "cat", "sat", "the", "cat"]],2));
+//console.log(analyzeTexts([["racecar","level","hello","level"],["the", "cat", "sat", "the", "cat"]],2));
 console.log(analyzeTexts(["racecar","level","hello","level"],2));
+console.log(findRepeatedPhrases(["racecar", "hello", "level", "hello", "splat"],1));
