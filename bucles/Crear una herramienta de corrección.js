@@ -22,10 +22,36 @@ function findPalindromeBreaks(words){
 
 function findRepeatedPhrases(words, phraseLength){
     let arregloDeCoincidencias = [];
-    let fraseEnUnion = phraseLength.split(" ");
-    console.log(fraseEnUnion);
-
+    if(phraseLength >= words.length){
+        return [];
+    }
+    const fraseTomada = words.slice(0,phraseLength);
+    console.log(fraseTomada);
+    for (let i = 0; i < words.length; i++) {
+    if (fraseTomada.join(',') === words.slice(i, i + phraseLength).join(',')) {
+        arregloDeCoincidencias.push(i);
+      }
+    }
+    console.log(arregloDeCoincidencias);
+    return arregloDeCoincidencias;
 }
 
-console.log(isPalindrome("ana"));
-console.log(findRepeatedPhrases(["the", "cat", "sat", "the", "cat"], "the cat"));
+function analyzeTexts(texts, phraseLength){
+    let resultado = [];
+    if(texts.length == 0){
+        return [];
+    }
+    
+    for(let text of texts){
+    resultado.push(
+        {
+            repeatedPhrases : findRepeatedPhrases(text, phraseLength),
+            palindromeBreaks: findPalindromeBreaks(text)
+        }
+        );
+        }
+    return resultado;
+}
+
+console.log(analyzeTexts([["racecar","level","hello","level"],["the", "cat", "sat", "the", "cat"]],2));
+console.log(analyzeTexts(["racecar","level","hello","level"],2));
