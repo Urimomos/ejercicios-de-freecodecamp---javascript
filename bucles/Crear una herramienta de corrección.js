@@ -25,14 +25,17 @@ function findRepeatedPhrases(words, phraseLength){
     if(phraseLength >= words.length){
         return [];
     }
-    const fraseTomada = words.slice(0,phraseLength);
-    console.log(fraseTomada);
-    for (let i = 0; i < words.length; i++) {
-    if (fraseTomada.join(',') === words.slice(i, i + phraseLength).join(',')) {
-        arregloDeCoincidencias.push(i);
-      }
+    let wordsCopia = words.slice();
+    for(let i = 0; i < words.length; i++){
+        fraseTomada = words.slice(i,i + phraseLength);
+        wordsCopia.splice(i,phraseLength);
+        for(let j = 0; j < wordsCopia.length; j++){
+            if (fraseTomada.join(" ") === wordsCopia.slice(j, j + phraseLength).join(" ")) {
+            arregloDeCoincidencias.push(i);
+            }
+        } 
+        wordsCopia = words.slice();
     }
-    console.log(arregloDeCoincidencias);
     return arregloDeCoincidencias;
 }
 
@@ -61,6 +64,5 @@ function analyzeTexts(texts, phraseLength){
     return resultado;
 }
 
-//console.log(analyzeTexts([["racecar","level","hello","level"],["the", "cat", "sat", "the", "cat"]],2));
-console.log(analyzeTexts(["racecar","level","hello","level"],2));
-console.log(findRepeatedPhrases(["racecar", "hello", "level", "hello", "splat"],1));
+console.log(analyzeTexts([["racecar","level","hello","level"],["the", "cat", "sat", "the", "cat"]],2));
+console.log(analyzeTexts(["racecar","level","hello","level"],1));
