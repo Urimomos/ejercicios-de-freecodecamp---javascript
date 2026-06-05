@@ -22,6 +22,10 @@ function parseShipment(rawData){
 
 function planRestock(pantry, shipment){
     let arregloResultado = [];
+    const arregloDeSku = [];
+    for(let i = 0; i < pantry.length; i++){
+        arregloDeSku.push(pantry[i].sku);
+    }
     for(let ship of shipment){
         if(ship.qty <= 0){
             arregloResultado.push(
@@ -31,8 +35,27 @@ function planRestock(pantry, shipment){
                 }
             );
         }
+        if(arregloDeSku.includes(ship.sku) && ship.qty != 0){
+            arregloResultado.push(
+                {
+                    type: "restock",
+                    item : ship
+                }
+            );
+        }else if(ship.qty != 0){
+            arregloResultado.push(
+                {
+                    type: "donate",
+                    item : ship
+                }
+            );
+        }
     }
     return arregloResultado;
+}
+
+function groupByZone(actions){
+    
 }
 
 const rawData = [
