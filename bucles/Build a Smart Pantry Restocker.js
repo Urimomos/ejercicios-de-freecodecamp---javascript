@@ -55,7 +55,33 @@ function planRestock(pantry, shipment){
 }
 
 function groupByZone(actions){
-    
+    let grupos = {};
+    for(let action of actions){
+        const zona = action.item.zone
+        if(!grupos[zona]){
+            grupos[zona] = [];
+        }
+        grupos[zona].push(action);
+    }
+    console.log(grupos);
+    return grupos;
+}
+
+
+function clonePantry(pantry){
+    let arregloClonado = [];
+    for(let objeto of pantry){
+        arregloClonado.push(
+            {
+                sku: objeto.sku,
+                name: objeto.name,
+                qty: objeto.qty,
+                expires: objeto.expires,
+                zone: objeto.zone  
+            }
+        );
+    }
+    return arregloClonado;
 }
 
 const rawData = [
@@ -69,5 +95,10 @@ const pantry = [{ sku: "D43", name: "Pineapples", qty: 2, expires: "2027-01-01",
 const shipment = [{ sku: "D43", name: "Pineapples", qty: 0, expires: "2027-01-01", zone: "general" },
                   { sku: "E54", name: "Peppers", qty: -1, expires: "2027-01-01", zone: "fridge" }
                 ];
+const actions = [
+  { type: "restock", item: { sku: "A1", zone: "fridge" } },
+  { type: "restock", item: { sku: "B1", zone: "pantry" } }, 
+];
 
-console.log(planRestock(pantry, shipment));
+//console.log(planRestock(pantry, shipment));
+console.log(groupByZone(actions));
