@@ -1,0 +1,31 @@
+body {
+    background-color: #EFFBFB;
+}
+
+.item-list {
+    list-style-type: none;
+    margin: 50px auto;
+    width: 50%;
+    background: linear-gradient(45deg , #C1F6D5, #C1F6F0, #C1E2F6);
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.item-list li {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+
+.favorite-icon {
+    display: inline-block;
+    border: none;
+    background: none;
+    margin-left: 70%;
+    font-size: 1.5rem;
+}
+
+.filled {
+    color: red;
+}
