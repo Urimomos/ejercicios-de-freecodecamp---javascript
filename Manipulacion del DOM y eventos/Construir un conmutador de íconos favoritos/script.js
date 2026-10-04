@@ -1,24 +1,26 @@
 const hearthBtn = document.querySelectorAll(".favorite-icon");
-
-
-function cambioDeColor(num) {
-    if (!hearthBtn[num].classList.contains("filled")) {
-        hearthBtn[num].classList.add("filled");
-        hearthBtn[num].innerHTML = "&#10084;";
-        console.log("activada");
+/*function cambioDeColor(index) {
+    if (!hearthBtn[index].classList.contains("filled")) {
+        hearthBtn[index].classList.add("filled");
+        hearthBtn[index].innerHTML = "&#10084;";
     } else {
-        hearthBtn[num].classList.remove("filled");
-        hearthBtn[num].innerHTML = "&#9825;";
-        console.log("desctivada");
+        hearthBtn[index].classList.remove("filled");
+        hearthBtn[index].innerHTML = "&#9825;";
     }
     
-}
+}*/
+hearthBtn.forEach((boton , index) => {
+    boton.addEventListener("click", () => {
+        if (!hearthBtn[index].classList.contains("filled")) {
+            hearthBtn[index].classList.add("filled");
+            hearthBtn[index].innerHTML = "&#10084;";
+        } else {
+            hearthBtn[index].classList.remove("filled");
+            hearthBtn[index].innerHTML = "&#9825;";
+        }
+    });
+});
 
-
-
-for (let i = 0; i < hearthBtn.length; i++) {
-    hearthBtn[i].addEventListener("click", () => {cambioDeColor(i)});    
-}
 
 
 

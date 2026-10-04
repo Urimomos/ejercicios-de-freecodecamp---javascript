@@ -1,0 +1,14 @@
+body {
+    text-align: center;
+    height: 100vh;
+}
+
+.container {
+    margin: auto auto;
+    background: linear-gradient(45deg , rgba(113, 113, 236, 0.5), rgba(63, 63, 148, 0.5));
+    width: 50%;
+    max-width: 300px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px 0 gray;
+}
